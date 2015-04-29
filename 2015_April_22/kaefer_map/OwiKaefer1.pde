@@ -1,6 +1,7 @@
 class OwiKaefer1 extends Kaefer {
   
-  float noiseP;
+  float noiseP; 
+  color KaeferFarbe;
   
   OwiKaefer1() {
  
@@ -9,6 +10,7 @@ class OwiKaefer1 extends Kaefer {
      direction.rotate(random(TWO_PI));
      direction.mult(speed);
      noiseP = 0;
+     KaeferFarbe=color (255);
      
   }
   
@@ -26,9 +28,14 @@ class OwiKaefer1 extends Kaefer {
       float blue = test & 0xFF;
     if(test==color(0)) direction.rotate(PI);
     if(red<230 && green>50 && blue<230) eat = true;
+    if (test==color (159,29,7)) 
+      {speed = -0.7; direction.mult(speed);
+      KaeferFarbe= color (159, 29, 7);
+    };
     if(eat) {
+      KaeferFarbe= color (129,210,61);
       
-      if(frameCount%5==0) {
+      if(frameCount%15==0) {
         
         color white = color(255);
         int biteX = (int)mouth.x;
@@ -47,7 +54,7 @@ class OwiKaefer1 extends Kaefer {
     checkBorder();
     
     // draw kaefer
-    fill(255);
+    fill(KaeferFarbe);
     ellipse(position.x, position.y, 20, 20);
     
     // mittellinie
